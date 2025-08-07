@@ -15,6 +15,35 @@ struct  ContentView: View {
         ["0", ".", "", ""]
     ]
 
+    var body: some View {
+    VStack(spacing: 12) {
+        Spacer()
+        Text(display)
+            .font(.system(size: 64))
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding()
+
+        ForEach(buttons, id: \.self) { row in
+            HStack(spacing: 12) {
+                ForEach(row, id: \.self) { button in
+                    Button(action: {
+                        self.buttonTapped(button)
+                    }) {
+                        Text(button)
+                            .font(.title)
+                            .frame(width: 70, height: 70)
+                            .background(Color.gray.opacity(0.2))
+                            .foregroundColor(.black)
+                            .cornerRadius(35)
+                    }
+                }
+            }
+        }
+    }
+    .padding()
+}
+
+
     func buttonTapped(_ symbol: String) {
         switch  symbol {
         case "0"..."9", ".":
@@ -54,3 +83,4 @@ struct  ContentView: View {
     }
     
 }
+
